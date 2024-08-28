@@ -24,7 +24,7 @@ class Data(db.Model):
     emo2_anxiety = db.Column(db.Integer)
     emo2_shame = db.Column(db.Integer)
 
-    feedback1 = db.Column(db.String(10000))
-    feedback2 = db.Column(db.String(10000))
+    feedback1 = db.Column(db.Text)
+    feedback2 = db.Column(db.Text)
     station_track = db.Column(db.String(500), nullable=True)
     result = db.Column(db.String(50), nullable=True)
