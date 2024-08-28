@@ -132,24 +132,24 @@ Goal station:   CONBY VALE
     Warning:<br>
     Due to ongoing construction at Bagton Mere, the station is not accessible and no metros will pass through it.  <br>
     Your task remains the same.
-    <!-- Please design your trip accordingly.<br> -->
+
 </p>
 
 <p class="t_map">    
     <br>
-    It takes 2 mins between each Blue Line station. <br>
-    It takes 3 mins between each Red Line station. <br>
-    It takes either 4 or 7 mins between each Yellow Line station (marked on the map). <br>
-    <!-- <span style="color: red;">Station Bagton Mere is not accessible.</span> -->
+    Each Blue Line station is 2 minutes apart. <br>
+    Each Red Line station is 3 minutes apart. <br>
+    Each Yellow Line station is 4 or 7 minutes apart. (marked on the map). <br>
+
 </p>
     <img src="{{ url_for('static', filename='img/map_with_error.jpg') }}" alt="New Map" style="width: 100%;">
 {% else %}
 
 
 <p class="t_map">    
-    It takes 2 mins between each Blue Line station. <br>
-    It takes 3 mins between each Red Line station. <br>
-    It takes either 4 or 7 mins between each Yellow Line station (marked on the map). <br>
+    Each Blue Line station is 2 minutes apart. <br>
+    Each Red Line station is 3 minutes apart. <br>
+    Each Yellow Line station is 4 or 7 minutes apart. (marked on the map). <br>
 </p>
     <img src="{{ url_for('static', filename='img/map.jpg') }}" alt="Original Map" style="width: 100%;">
 {% endif %}

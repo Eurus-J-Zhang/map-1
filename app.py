@@ -25,12 +25,12 @@ app = create_app()
 
 # Centralized action definitions
 actions = {
-    'a': 'Take Blue Line to the direction of Perivale',
-    'b': 'Take Blue Line to the direction of Windrush Park',
-    'c': 'Take Red Line to the direction of Cockfosters',
-    'd': 'Take Red Line to the direction of Fayre End',
-    'e': 'Take Yellow Line to the direction of Cockfosters',
-    'f': 'Take Yellow Line to the direction of Giles Town',
+    'a': 'Take Blue Line towards Perivale',
+    'b': 'Take Blue Line towards Windrush Park',
+    'c': 'Take Red Line towards Cockfosters',
+    'd': 'Take Red Line towards Fayre End',
+    'e': 'Take Yellow Line towards Cockfosters',
+    'f': 'Take Yellow Line towards Giles Town',
     'g': "Get out of the metro"
 }
 
