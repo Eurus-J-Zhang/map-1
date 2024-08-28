@@ -4,17 +4,29 @@
 
 <script>
     // Function for not being able to go backwards
-    function preventBack() { window.history.forward(); }    
-    setTimeout("preventBack()", 0);  
-    window.onunload = function () { null }; 
+    function preventBack() { 
+        window.history.forward(); 
+    }    
+    setTimeout(preventBack, 0);  
+    window.onunload = () => null;
 
-    var currentStation = "{{ station }}";
-    let currentTimeStr = "{{ current_time }}"; // Time passed from Flask, e.g., "08:32"
+    const config ={
+        station: "{{ station }}",
+        currentTimeStr: "{{ current_time }}",       // Time passed from Flask, e.g., "08:32"
+        countdown: 90,                              // Initialize the countdown timer to 90 seconds
+        modalMessages: {
+            unexpectedStop: "Unexpectedly, the metro stops here.",
+            timeUp: `It is already 9:00 and you have not reached your destination. You will be directed to the result page in 5 seconds.`,
+            destinationReached: `You have reached your destination in time! Now you can get out of the metro and finish the task.`,
+            actionTimeup: `You have run out of time to make an action. You will be directed to the result page in 5 seconds.`
+        }
+    }
 
     // Function to show the modal with a message
     function showModal(message, allowClose = true) {
         var myModal = document.getElementById('myModal');
         var modalText = document.getElementById('modalText');
+
         if (myModal && modalText) {
             modalText.innerHTML = message; // Update the modal text
             myModal.style.display = "block";
@@ -25,50 +37,58 @@
                 if (closeButton) {
                     closeButton.style.display = 'none'; // Hide close button
                 }
-
                 // Prevent modal from closing when clicking outside of it
                 window.onclick = null;
             }
         }
     }
 
-    // Function to close the modal and start the timer
+    // Function to close the modal 
     function closeModal() {
         var myModal = document.getElementById('myModal');
         if (myModal) {
             myModal.style.display = "none";
-            // startCountdown(); // Start the timer after closing the modal
         }
     }
 
-    // Initialize the countdown timer to 90 seconds
-    let countdown = 90;
+    const redirectToFailPage = () => {
+        setTimeout(() => window.location.href = "/wrong", 5000); // Redirect after 5 seconds
+    };
 
     // Function to start the countdown timer
     function startCountdown() {
         const timerElement = document.getElementById('timer');
-
         const countdownInterval = setInterval(function() {
             // Update the timer display
-            timerElement.textContent = countdown;
-
-            // Decrease the countdown by one second
-            countdown--;
+            timerElement.textContent = config.countdown;
+            config.countdown--;  // Decrease the countdown by one second
 
             // If the countdown reaches zero, redirect to the fail page
-            if (countdown < 0) {
+            if (config.countdown < 0) {
                 clearInterval(countdownInterval);
-                showModal(`You have run out of time to make an action. You will be directed to the result page in 5 seconds`,false);
-                setTimeout(function() {
-                window.location.href = "/wrong"; // Redirect to the wrong.html page
-            }, 5000);
+                showModal(config.modalMessages.actionTimeup, false);
+                redirectToFailPage();
             }
         }, 1000); // Update every second
     }
 
-    // Set up close functionality
-    document.addEventListener('DOMContentLoaded', function() {
+    function handleModalBehavior() {
+        // Show the modal if the station is 'Millstone Square'
+        if (config.station === 'Millstone Square') {
+            showModal(config.modalMessages.unexpectedStop);
+        }
+        // Show the modal with no close option if the current time is >= 09:00
+        else if (config.currentTimeStr >= "09:00") {
+            showModal(config.modalMessages.timeUp, false);
+            redirectToFailPage();
+        } else if (config.station === 'Conby Vale' && config.currentTimeStr <= "09:00") {
+            showModal(config.modalMessages.destinationReached);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
         startCountdown();
+
         var closeButton = document.getElementsByClassName("close")[0];
         var myModal = document.getElementById('myModal');
 
@@ -77,30 +97,8 @@
             closeButton.onclick = function() {
                 closeModal();
             };
-
-            // Close modal when clicking outside of the modal content
-            window.onclick = function(event) {
-                if (event.target == myModal) {
-                    closeModal();
-                }
-            };
         }
-
-        // Show the modal if the station is 'Millstone Square'
-        if (currentStation === 'Millstone Square') {
-            showModal(`However, the metro stops here unexpectedly. <br>
-`);
-        }
-
-        // Show the modal with no close option if the current time is >= 09:00
-        if (currentTimeStr >= "09:00") {
-            showModal('Sorry, it is already 9:00 and you have not reached your destination. You will be directed to the result page in 5 seconds.', false);
-            setTimeout(function() {
-                window.location.href = "/wrong"; // Redirect to the wrong.html page
-            }, 5000); // 5000 milliseconds = 5 seconds
-        } else if (currentStation === 'Conby Vale' && currentTimeStr <= "09:00") {
-            showModal('You have reached your destination in time! Now you can get out of the metro and finish the task.');
-        }
+        handleModalBehavior();
     });
 </script>
 
