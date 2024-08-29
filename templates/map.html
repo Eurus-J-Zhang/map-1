@@ -56,21 +56,21 @@
     };
 
     // Function to start the countdown timer
-    function startCountdown() {
-        const timerElement = document.getElementById('timer');
-        const countdownInterval = setInterval(function() {
-            // Update the timer display
-            timerElement.textContent = config.countdown;
-            config.countdown--;  // Decrease the countdown by one second
+    // function startCountdown() {
+    //     const timerElement = document.getElementById('timer');
+    //     const countdownInterval = setInterval(function() {
+    //         // Update the timer display
+    //         timerElement.textContent = config.countdown;
+    //         config.countdown--;  // Decrease the countdown by one second
 
-            // If the countdown reaches zero, redirect to the fail page
-            if (config.countdown < 0) {
-                clearInterval(countdownInterval);
-                showModal(config.modalMessages.actionTimeup, false);
-                redirectToFailPage();
-            }
-        }, 1000); // Update every second
-    }
+    //         // If the countdown reaches zero, redirect to the fail page
+    //         if (config.countdown < 0) {
+    //             clearInterval(countdownInterval);
+    //             showModal(config.modalMessages.actionTimeup, false);
+    //             redirectToFailPage();
+    //         }
+    //     }, 1000); // Update every second
+    // }
 
     function handleModalBehavior() {
         // Show the modal if the station is 'Millstone Square'
@@ -87,7 +87,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        startCountdown();
+        // startCountdown();
 
         var closeButton = document.getElementsByClassName("close")[0];
         var myModal = document.getElementById('myModal');
@@ -115,8 +115,8 @@ Goal station:   CONBY VALE
     <br><br>
     Clock Time: <span style="border: 1px solid #000; padding: 5px; border-radius: 3px;padding-left: 3%;padding-right: 3%;">{{current_time}}</span>
     <br><br>
-    Time left to make an action: 
-    <span id="timer" style="border: 1px solid #000; padding: 5px; border-radius: 3px;padding-left: 3%;padding-right: 3%;">90</span> seconds
+    <!-- Time left to make an action: 
+    <span id="timer" style="border: 1px solid #000; padding: 5px; border-radius: 3px;padding-left: 3%;padding-right: 3%;">90</span> seconds -->
 </div>
 {% endblock %}
 
@@ -131,11 +131,13 @@ Goal station:   CONBY VALE
 <p class="t_warning">
     Warning:<br>
     Due to ongoing construction at Bagton Mere, the station is not accessible and no metros will pass through it.  <br>
-    Your task remains the same.
+    You will need to take a detour to get to Conby Vale. Remember, you need to get there by 9:00.
 
 </p>
 
 <p class="t_map">    
+    
+    Please plan your trip carefully, ensuring you calculate the time accurately.<br>
     <br>
     Each Blue Line station is 2 minutes apart. <br>
     Each Red Line station is 3 minutes apart. <br>
@@ -147,6 +149,8 @@ Goal station:   CONBY VALE
 
 
 <p class="t_map">    
+    Please plan your trip carefully, ensuring you calculate the time accurately. Your goal is to arrive at Conby Vale by 9:00 AM.<br><br>
+
     Each Blue Line station is 2 minutes apart. <br>
     Each Red Line station is 3 minutes apart. <br>
     Each Yellow Line station is 4 or 7 minutes apart. (marked on the map). <br>

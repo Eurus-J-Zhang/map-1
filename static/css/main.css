@@ -182,7 +182,7 @@ form p {
 
 .content-grid {
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 2fr 1fr;
     grid-template-rows: auto 1fr;
     gap: 15px; /* Adjust the gap between blocks */
 }
