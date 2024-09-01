@@ -156,6 +156,7 @@ def intro():
     session['current_time'] = '08:30'
     station = 'Giles Town'
     session['s3_visited'] = False 
+    session['page_s3'] = False 
     session['result']=None
     session['station_track'] = [] # Initialize as an empty list
     form = ActionForm()
@@ -196,9 +197,11 @@ def s2():
     form.action.choices = [(value, label) for value, label, is_disabled in choices]
 
     current_time = session['current_time']
-    session['station_track'].append([station,current_time])  # Append station to the list 
+    session['page_s3'] = False
+
 
     if form.validate_on_submit():
+        session['station_track'].append([station,current_time])  # Append station to the list 
         action = form.action.data
          
         if action == 'a':
@@ -217,6 +220,7 @@ def s3():
     station = 'Millstone Square'
     choices = get_action_choices(station)
     session['s3_visited'] = True # Set the flag when s3 is visited
+    session['page_s3'] = True
     # Set the choices for the action field
     form.action.choices = [(value, label) for value, label, is_disabled in choices]
 
@@ -241,6 +245,7 @@ def s7():
     form = ActionForm()
     station = 'Donningpool North'
     choices = get_action_choices(station)
+    session['page_s3'] = False
     # Set the choices for the action field
     form.action.choices = [(value, label) for value, label, is_disabled in choices]
 
@@ -325,6 +330,7 @@ def s6():
     form.action.choices = [(value, label) for value, label, is_disabled in choices]
 
     current_time = session['current_time']
+    session['page_s3'] = False
     session['station_track'].append([station,current_time])  # Append station to the list 
 
     if form.validate_on_submit():

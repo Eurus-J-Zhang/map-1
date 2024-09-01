@@ -125,38 +125,38 @@ Goal station:   CONBY VALE
 
 {% block left_block %}
 
-
-
 {% if session.get('s3_visited') %}
 <p class="t_warning">
     Warning:<br>
     Due to ongoing construction at Bagton Mere, the station is not accessible and no metros will pass through it.  <br>
-    You will need to take a detour to get to Conby Vale. Remember, you need to get there by 9:00.
-
 </p>
+
+    {%if session.get('page_s3')%}
+    <p class="t_warning">
+    Now you are forced to exit the metro at Millstone Square. From this station, you can choose from three different directions, as shown on the right. 
+        Please use the map to calculate travel time, plan the route that can get you to your destination in time, and make the action. 
+    </p>
+    {% endif %}
+
+{% endif %}
 
 <p class="t_map">    
     
-    Please plan your trip carefully, ensuring you calculate the time accurately.<br>
+     Please plan your trip carefully, ensuring you calculate the time accurately. Your goal is to arrive at Conby Vale by 9:00 AM.<br> 
     <br>
     Each Blue Line station is 2 minutes apart. <br>
     Each Red Line station is 3 minutes apart. <br>
-    Each Yellow Line station is 4 or 7 minutes apart. (marked on the map). <br>
-
+    Each Yellow Line station is 4 or 7 minutes apart (marked on the map). <br>
 </p>
-    <img src="{{ url_for('static', filename='img/map_with_error.jpg') }}" alt="New Map" style="width: 100%;">
-{% else %}
 
 
-<p class="t_map">    
-    Please plan your trip carefully, ensuring you calculate the time accurately. Your goal is to arrive at Conby Vale by 9:00 AM.<br><br>
-
-    Each Blue Line station is 2 minutes apart. <br>
-    Each Red Line station is 3 minutes apart. <br>
-    Each Yellow Line station is 4 or 7 minutes apart. (marked on the map). <br>
-</p>
-    <img src="{{ url_for('static', filename='img/map.jpg') }}" alt="Original Map" style="width: 100%;">
+{% if session.get('s3_visited') %}
+<img src="{{ url_for('static', filename='img/map_with_error.jpg') }}" alt="New Map" style="width: 100%;">
+{%else%}
+<img src="{{ url_for('static', filename='img/map.jpg') }}" alt="Original Map" style="width: 100%;">
 {% endif %}
+
+
 {% endblock %}
 
 {% block right_block %}
