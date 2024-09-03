@@ -587,4 +587,4 @@ if __name__ == "__main__":
     # Only run the development server if the script is executed directly (not via debugger)
     import os
     if os.getenv("FLASK_ENV") != "development":
-        app.run(debug=False)
+        app.run(debug=True)

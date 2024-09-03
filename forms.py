@@ -40,7 +40,7 @@ class EmotionFormPost(FlaskForm):
 class ReflectForm(FlaskForm):
     strategy_fb = StringField('',validators=[DataRequired()],widget=TextArea())
     contribution_fb = StringField('',validators=[DataRequired()],widget=TextArea())
-    contribution = RadioField('Contribution', choices=[('A','The instructions'),('B','Your strategy')], validators=[DataRequired()])
+    contribution = RadioField('Contribution', choices=[('A','Instructions I was given'),('B','My skill')], validators=[DataRequired()])
 
 class ActionForm(FlaskForm):
     action = RadioField('Choose an action', validators=[DataRequired(message="You must choose an action.")])
