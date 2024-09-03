@@ -126,6 +126,7 @@ def reflect():
         # Get form data and remove CSRF token
         reflect_data = form.data
         reflect_data.pop('csrf_token', None)
+        reflect_data.pop('submit', None)
         session['reflect_data'] = reflect_data
         return redirect(url_for('emo_post'))
     return render_template('reflect.html', form=form)
@@ -145,12 +146,14 @@ def emo_post():
         # Retrieve necessary session data
         emo_pre_data = session.get('emo_pre_data',{})
         index_data = session.get('index_data', {})
+        reflect_data = session.get('reflect_data', {})
         station_track = session.get('station_track', [])
         station_track_json = json.dumps(station_track)
         result = session.get('result')
 
         # Combine all data
-        combined_data = {**index_data, 'station_track': station_track_json,'result': result, **emo_pre_data, **emo_post_data}
+        combined_data = {**index_data, 'station_track': station_track_json,'result': result, 
+                         **emo_pre_data, **reflect_data, **emo_post_data}
         
         # Save combined data to the database
         data = Data(**combined_data)
@@ -169,7 +172,8 @@ def intro():
     station = 'Giles Town'
     session['s3_visited'] = False 
     session['page_s3'] = False 
-    session['result']=None
+    session['result'] = None
+    session['reflect_data'] = {}
     session['station_track'] = [] # Initialize as an empty list
     form = ActionForm()
     choices = get_action_choices(station)
@@ -343,7 +347,6 @@ def s6():
 
     current_time = session['current_time']
     session['page_s3'] = False
-    session['station_track'].append([station,current_time])  # Append station to the list 
 
     if form.validate_on_submit():
         session['station_track'].append([station,current_time])  # Append station to the list 
@@ -584,4 +587,4 @@ if __name__ == "__main__":
     # Only run the development server if the script is executed directly (not via debugger)
     import os
     if os.getenv("FLASK_ENV") != "development":
-        app.run(debug=True)
+        app.run(debug=False)
