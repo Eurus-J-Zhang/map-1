@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block top_block %}
+
+
+<div class="form-container">
+    <form method="POST">
+      {{ form.hidden_tag() }}
+
+    <br>
+    
+    <p class="t_title">
+        Please share your experience. How did you successfully complete the task?<br>
+        What strategy did you use when you encountered the error and had to adjust your approach?
+        <br><br>
+    </p>
+      
+      <div>
+          {{ form.strategy_fb.label }}
+          {{ form.strategy_fb(class="feedback-input") }}
+      </div>
+    <br>
+    
+    <p class="t_title">
+        If you have to choose one, which do you believe contributes more to the success of the task?
+    </p>
+    
+    <td>        {% for subfield in form.contribution %}
+        <label>{{ subfield }} {{ subfield.label }}</label>
+        {% endfor %}</td>
+        <br><br>
+        <p class="t_title">
+Please you explain your choice.<br><br>
+        </p>
+<div>
+    {{ form.contribution_fb.label }}
+    {{ form.contribution_fb(class="feedback-input") }}
+</div>
+
+<br>
+      <input type="submit" value="Continue" class = "continue-btn">
+    </form>
+    </div>
+    
+    <br><br><br>
+
+    {% endblock %}

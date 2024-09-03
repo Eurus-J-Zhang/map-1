@@ -1,6 +1,6 @@
 from flask import Flask,render_template,url_for,request, redirect, send_from_directory, session
 from flask_migrate import Migrate
-from forms import EmotionFormPre, EmotionFormPost, DemographicInfo, ActionForm
+from forms import EmotionFormPre, EmotionFormPost, DemographicInfo, ActionForm, ReflectForm
 import os
 import pymysql
 from models import db, Data
@@ -117,6 +117,18 @@ def emo_pre():
         session['emo_pre_data'] = emo_pre_data
         return redirect(url_for('intro'))
     return render_template('emo_pre.html', form=form)
+
+@app.route('/reflect', methods=['GET', 'POST'])
+def reflect():
+    form = ReflectForm()
+
+    if form.validate_on_submit():
+        # Get form data and remove CSRF token
+        reflect_data = form.data
+        reflect_data.pop('csrf_token', None)
+        session['reflect_data'] = reflect_data
+        return redirect(url_for('emo_post'))
+    return render_template('reflect.html', form=form)
 
 @app.route('/emo_post', methods=['GET', 'POST'])
 def emo_post():
@@ -334,6 +346,7 @@ def s6():
     session['station_track'].append([station,current_time])  # Append station to the list 
 
     if form.validate_on_submit():
+        session['station_track'].append([station,current_time])  # Append station to the list 
         action = form.action.data
         if action == 'c':
             return process_action(3, 's3')
