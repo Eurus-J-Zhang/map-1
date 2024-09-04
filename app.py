@@ -580,11 +580,5 @@ def wrong():
 def end():
     return render_template('end.html')
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
 if __name__ == "__main__":
-    # Only run the development server if the script is executed directly (not via debugger)
-    import os
-    if os.getenv("FLASK_ENV") != "development":
-        app.run(debug=True)
+    app.run(debug=True)

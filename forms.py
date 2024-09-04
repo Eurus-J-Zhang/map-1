@@ -38,9 +38,9 @@ class EmotionFormPost(FlaskForm):
     feedback2 = StringField('',validators=[DataRequired()],widget=TextArea())
 
 class ReflectForm(FlaskForm):
-    strategy_fb = StringField('',validators=[DataRequired()],widget=TextArea())
-    contribution_fb = StringField('',validators=[DataRequired()],widget=TextArea())
-    contribution = RadioField('Contribution', choices=[('A','Instructions I was given'),('B','My skill')], validators=[DataRequired()])
+    # strategy_fb = StringField('',validators=[DataRequired()],widget=TextArea())
+    reflection = StringField('',validators=[DataRequired()],widget=TextArea())
+    # contribution = RadioField('Contribution', choices=[('A','Instructions I was given'),('B','My skill')], validators=[DataRequired()])
 
 class ActionForm(FlaskForm):
     action = RadioField('Choose an action', validators=[DataRequired(message="You must choose an action.")])

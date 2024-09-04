@@ -1,24 +1,10 @@
-/* .grid-parent{
-    display: grid;
-    grid-template-rows: auto 50px;
-    margin-top: auto; 
-    margin-bottom: auto;
-    margin-left: 17%;
-    margin-right: 17%;
-    font-size: 20px;
-} */
-
-.instruction{
-    margin-top: auto; 
-    margin-bottom: auto;
-}
 
 .t_note{
     font-size: 18px;
     font-family: "Georgia", sans-serif;
     color:olive;
-    margin-left: 5%;
-    margin-right: 5%;
+    /* margin-left: 5%;
+    margin-right: 5%; */
     border: 2px dashed olive; 
     padding: 5px; 
     padding-left: 5%;
@@ -30,7 +16,7 @@
     font-size: 18px;
     font-family: "Georgia", sans-serif;
     color:red;
-    margin-left: 5%;
+    /* margin-left: 5%; */
     margin-right: 5%;
     border: 2px dashed red; 
     padding: 5px; 
@@ -39,18 +25,13 @@
     border-radius: 10px;
 }
 
-.t_map{
-    margin-left: 5%;
-    margin-right: 5%;
-}
 
 .t_content{
     font-size: 20px;
     text-align: left;
     margin-left: 5%;
-    margin-right: 15%;
+    margin-right: 5%;
 }
-
 
 
 form p {
@@ -73,10 +54,10 @@ form p {
 }
 
 .my-table {
-    /* padding-right: 20px; */
-    width: 40%;
-
-}
+    /* padding-right: 20px;  */
+    width: 500px;
+    /* border-collapse: collapse;  */
+ }  
 
 .text-input{
     width: 200px;
@@ -106,11 +87,11 @@ form p {
     font-family: Arial;
 }
 
-.container {
+/* .container {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
 
 /* The Modal (background) */
 .modal {
@@ -163,14 +144,13 @@ form p {
 
 .grid-parent {
     font-family: Calibri;
-    
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px; /* Adjust the gap as needed */
+    gap: 15px; /* Adjust the gap as needed */
     margin-top: auto; 
     margin-bottom: auto;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
     font-size: 20px;
 }
 
@@ -182,7 +162,8 @@ form p {
 
 .content-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    /* grid-template-columns: 2fr 1fr; */
+    grid-template-columns: minmax(750px, 60%) auto;
     grid-template-rows: auto 1fr;
     gap: 15px; /* Adjust the gap between blocks */
 }
@@ -204,7 +185,6 @@ form p {
 }
 
 
-
 .headline {
     padding: 10px; /* Add some padding to the blocks */
     /* border: 1px solid #ccc; */
@@ -212,10 +192,10 @@ form p {
 
 /* for the radio buttons */
 .radio {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
     margin-left: 5%;
-    /* margin-right: 5%; */
+    margin-right: 5%;
 }
 
 .radio label {
@@ -250,7 +230,7 @@ form p {
     border: 2px solid;
     border-radius: 5px;
     cursor: pointer;
-    width: 80%;
+    width: 100%;
 }
 
 /* Color-specific styles */
@@ -281,16 +261,10 @@ input:not([disabled]) + .g{
     color: white;
 }
 
-.form-container {
-    width: 80%; /* Adjust the width as necessary */
+table {
+    width: 70%;
     margin: 0 auto;
     text-align: center;
     line-height: 200%;
+    max-width: 700px;
 }
-
-table {
-    width: 60%;
-    margin: 0 auto;
-    text-align: center;
-}
-
