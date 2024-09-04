@@ -56,7 +56,6 @@ form p {
 .my-table {
     /* padding-right: 20px;  */
     width: 500px;
-    /* border-collapse: collapse;  */
  }  
 
 .text-input{
@@ -80,18 +79,14 @@ form p {
 
 .feedback-input {
     height: 180px;
-    width: 100%;
+    width: 80%;
     font-size: 18px;
     padding-top: 5px;
     padding-left: 3px;
     font-family: Arial;
+    margin: 0 auto;
 }
 
-/* .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } */
 
 /* The Modal (background) */
 .modal {
